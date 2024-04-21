@@ -28,7 +28,7 @@ with tgb.Page() as home:
     with tgb.part(render="{transition0}"):
         # coin
         # src: https://dribbble.com/shots/1466662-Heads-tails
-        # tgb.image(content="https://cdn.dribbble.com/users/120141/screenshots/1466662/800x600_dribbble.gif", label="Coin", on_action=(lambda x: x), class_name="")
+        tgb.image(content="../../assets/coinflip.gif", label="Coin", on_action=(lambda x: x), class_name="m-auto")
 
         # page title
         tgb.text("Describe", mode="md")

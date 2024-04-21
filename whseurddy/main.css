@@ -1,0 +1,21 @@
+body {
+    align-items: center;
+    justify-content: center;
+}
+
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 100vw;
+    background-color: #38A296;
+    --element-padding: 0;
+    --container-max-width: 100%;
+}
+
+.taipy-image {
+    align-items: center;
+    display: flex;
+    border: 0;
+}
