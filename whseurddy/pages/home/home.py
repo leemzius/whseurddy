@@ -31,8 +31,8 @@ is_tails = False
 question = ""
 quote = ""
 # get_chat_completion = lambda x, y: x
-# global outcome
-outcome = coin_flip()
+global outcome
+outcome = None
 
 
 with tgb.Page() as home:
@@ -57,7 +57,7 @@ with tgb.Page() as home:
         def on_press(state):
             state.transition0 = False
             state.transition1 = True
-            state.outcome = outcome
+            outcome = coin_flip()
             state.is_tails = outcome == 'Tails'     
             state.quote = get_chat_completion(state.question, outcome)
 
@@ -105,18 +105,18 @@ with tgb.Page() as home:
             # global outcome
             transition0 = True
             transition1 = False
-            transition2 = False
             is_heads = False
             is_tails = False
             question = ""
             quote = ""
-            state.transition2 = False
             state.transition1 = False
             state.transition0 = True
             state.question = ""
             state.quote = ""
             state.is_heads = False
             state.is_tails = False
-            outcome = coin_flip()
-        tgb.button(label="Ask more!!", on_action=on_reset, class_name="")
+            transition2 = False
+            state.transition2 = False
+
+        tgb.button(label="Again?", on_action=on_reset, class_name="")
         
