@@ -31,7 +31,9 @@ is_tails = False
 question = ""
 quote = ""
 # get_chat_completion = lambda x, y: x
+# global outcome
 outcome = coin_flip()
+
 
 with tgb.Page() as home:
     with tgb.part(render="{transition0}"):
@@ -40,12 +42,12 @@ with tgb.Page() as home:
         tgb.image(content="../../assets/coinflip.gif", label="Coin")
 
         # page title
-        tgb.text("Noracle", id="title")
-        tgb.text("Flip a coin. Save time.", id="subtitle")
+        tgb.text("noracle", id="title")
+        tgb.text("Ask a Yes/No Question!", id="subtitle")
 
         # input box
         #save the user input
-        tgb.input("{question}", multiline=True, lines_shown=3, id="question")
+        tgb.input("{question}", multiline=True, lines_shown=2, id="question", label="Get typing here...")
 
         # descripion
         tgb.text("Heads is No.")
@@ -57,7 +59,7 @@ with tgb.Page() as home:
             state.transition1 = True
             state.outcome = outcome
             state.is_tails = outcome == 'Tails'     
-            state.quote = get_chat_completion(state.question, outcome)
+            state.quote = get_chat_completion(state.question)
 
             if outcome == 'Heads':
                 state.is_heads = True
@@ -82,7 +84,7 @@ with tgb.Page() as home:
     with tgb.part(render="{transition2}"):
         # powered
         with tgb.part(class_name="center"):
-            tgb.text("Powered by Noracle", id="powered")
+            tgb.text("Powered by noracle", id="powered")
 
         # coin
         with tgb.part(render="{is_heads}", class_name="center"):
@@ -97,3 +99,24 @@ with tgb.Page() as home:
         else:
             tgb.text(f"Yes", id="outcome")
         tgb.text("{quote}", id="quote")
+
+        # button
+        def on_reset(state):
+            # global outcome
+            transition0 = True
+            transition1 = False
+            transition2 = False
+            is_heads = False
+            is_tails = False
+            question = ""
+            quote = ""
+            state.transition2 = False
+            state.transition1 = False
+            state.transition0 = True
+            state.question = ""
+            state.quote = ""
+            state.is_heads = False
+            state.is_tails = False
+            outcome = coin_flip()
+        tgb.button(label="Ask more!!", on_action=on_reset, class_name="")
+        
