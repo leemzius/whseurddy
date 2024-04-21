@@ -9,7 +9,7 @@ def coin_flip():
   # Create a qubit to represent the coin state
   qubit = cirq.LineQubit(0)
 
-  # Create a circuit with a random bit flip operation
+  # Create a circuit with a H qbit flip operation
   circuit = Circuit()
   circuit.append(cirq.H(qubit))
   circuit.append(cirq.measure(qubit))
