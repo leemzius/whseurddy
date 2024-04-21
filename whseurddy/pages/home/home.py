@@ -33,7 +33,7 @@ quote = ""
 # get_chat_completion = lambda x, y: x
 global outcome
 outcome = None
-
+outcome_text = "Heads"
 
 with tgb.Page() as home:
     with tgb.part(render="{transition0}"):
@@ -58,7 +58,7 @@ with tgb.Page() as home:
             state.transition0 = False
             state.transition1 = True
             outcome = coin_flip()
-            state.is_tails = outcome == 'Tails'     
+            state.outcome_text = "No" if outcome == "Heads" else "Yes"
             state.quote = get_chat_completion(state.question, outcome)
 
             if outcome == 'Heads':
@@ -94,28 +94,18 @@ with tgb.Page() as home:
 
         # result
         tgb.text("The result is...")
-        if outcome == "Heads":
-            tgb.text(f"No", id="outcome")
-        else:
-            tgb.text(f"Yes", id="outcome")
+        tgb.text("{outcome_text}", id="outcome")
         tgb.text("{quote}", id="quote")
 
         # button
         def on_reset(state):
             # global outcome
-            transition0 = True
-            transition1 = False
-            is_heads = False
-            is_tails = False
-            question = ""
-            quote = ""
             state.transition1 = False
             state.transition0 = True
             state.question = ""
             state.quote = ""
             state.is_heads = False
             state.is_tails = False
-            transition2 = False
             state.transition2 = False
 
         tgb.button(label="Again?", on_action=on_reset, class_name="")
