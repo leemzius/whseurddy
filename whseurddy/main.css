@@ -106,7 +106,9 @@ textarea {
     border: 0;
 }
 
-.mid {
+#mid {
     position: absolute;
+    display: block;
     top: 40vh;
+    left: 15%;
 }

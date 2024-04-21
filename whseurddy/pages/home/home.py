@@ -57,12 +57,12 @@ with tgb.Page() as home:
 
             if outcome == 'Heads':
                 state.is_heads = True
-                time.sleep(3.42 + 0.06)
+                time.sleep(3.42 + 0.05)
                 state.transition1 = False
                 state.transition2 = True
             else:
                 state.is_tails = True
-                time.sleep(4.35 + 0.06)
+                time.sleep(4.35 + 0.05)
                 state.transition1 = False
                 state.transition2 = True
 
@@ -71,9 +71,9 @@ with tgb.Page() as home:
     with tgb.part(render="{transition1}"):
         # coin spinning
         with tgb.part(render="{is_heads}"):
-            tgb.image(content="../../assets/coinflip-heads.gif", label="Coin", id='#mid-1', class_name="")
+            tgb.image(content="../../assets/coinflip-heads.gif", label="Coin", id='mid', class_name="")
         with tgb.part(render="{is_tails}"):
-            tgb.image(content="../../assets/coinflip-tails.gif", label="Coin", id='#mid-2', class_name="")
+            tgb.image(content="../../assets/coinflip-tails.gif", label="Coin", id='mid', class_name="")
 
     with tgb.part(render="{transition2}"):
         # coin
