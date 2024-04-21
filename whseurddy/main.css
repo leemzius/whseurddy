@@ -1,17 +1,103 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Baskervville&family=Libre+Baskerville&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 body {
-    align-items: center;
     justify-content: center;
+    font-family: "Montserrat", sans-serif;
 }
 
 #root {
     display: flex;
-    align-items: center;
     justify-content: center;
     padding: 0;
     width: 100vw;
+    height: 100vh;
+    padding-bottom: 10%;
+    padding-top: 10%;
     background-color: #38A296;
     --element-padding: 0;
     --container-max-width: 100%;
+}
+
+#title {
+    font-size: 3.5rem;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+
+#subtitle {
+    font-size: 1rem;
+    font-family: "Montserrat", sans-serif;
+    font-style: italic;
+}
+
+textarea {
+    overflow: hidden;
+}
+
+#question {
+    display: table;
+    max-width: 100% !important;
+    width: 100%;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    height: 300px;
+    max-height: 300px !important;
+    padding-top: 5%;
+    padding-bottom: 10%;
+    border-color: #f9e79c !important;
+    font-family: "Montserrat", sans-serif;
+    overflow: hidden;
+    line-height: 1.5;  
+}
+
+.Mui-focused {
+    border-color: #f9e79c !important;
+    overflow: hidden;
+}
+
+.taipy-input {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-top: 5%;
+    padding-bottom: 10%;
+}
+
+.taipy-input :hover :focus {
+    border-color: #f9e79c !important;
+}
+
+.taipy-button {
+    justify-self: center;
+    justify-content: center;
+    display: flex;
+    max-width: 100%;
+    width: 36%;
+    font-size: 1.5rem;
+    border-radius: 15px;
+    border-width: 2px !important;
+    border-color: #f9e79c !important;
+    color: #ffffff;
+    background-color: #c49e45;
+    bottom: 7%;
+    font-family: "Montserrat", sans-serif;
+    position: absolute;
+    left: 32%;
+    align-items: center;
+}
+
+:hover :active {
+    border-color: #f9e79c;
+}
+
+.taipy-text {
+    align-items: center;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-family: "Montserrat", sans-serif;
 }
 
 .taipy-image {

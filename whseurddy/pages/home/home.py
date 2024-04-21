@@ -37,11 +37,12 @@ with tgb.Page() as home:
         tgb.image(content="../../assets/coinflip.gif", label="Coin")
 
         # page title
-        tgb.text("Describe", mode="md")
+        tgb.text("Noracle", id="title")
+        tgb.text("Flip a coin. Save time.", id="subtitle")
 
         # input box
         #save the user input
-        question = tgb.input("What decision are you making?")
+        question = tgb.input("Tell me what you're indecisive about...", multiline=True, lines_shown=3, id="question")
 
         # descripion
         tgb.text("Heads is No.")
@@ -77,9 +78,9 @@ with tgb.Page() as home:
     with tgb.part(render="{transition2}"):
         # coin
         with tgb.part(render="{is_heads}"):
-            tgb.image(content="../../assets/heads.png", label="Coin", class_name="mid")
+            tgb.image(content="../../assets/heads.png", label="Coin", class_name="")
         with tgb.part(render="{is_tails}"):
-            tgb.image(content="../../assets/tails.png", label="Coin", class_name="mid")
+            tgb.image(content="../../assets/tails.png", label="Coin", class_name="")
 
         # result
         # quote = get_chat_completion(question, outcome)

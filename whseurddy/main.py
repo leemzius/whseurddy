@@ -23,6 +23,7 @@ pages = {
 stylekit = {
     "color_background_light": "#38A296",
     "color_background_dark": "#38A296",
+    "color_primary": "#ffffff",
     "root_margin": 0
 }
 
