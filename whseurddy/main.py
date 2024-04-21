@@ -21,6 +21,11 @@ pages = {
 	"results": results
 }
 
+stylekit = {
+    "color_background_light": "#38A296",
+    "color_background_dark": "#38A296"
+}
+
 
 if __name__ == "__main__":
     core = Core()
@@ -36,4 +41,4 @@ if __name__ == "__main__":
     # #############################################################################
 
     gui = Gui(pages=pages)
-    gui.run(title="Taipy Application")
+    gui.run(title="Taipy Application", stylekit=stylekit)
