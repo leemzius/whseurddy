@@ -12,7 +12,7 @@ def get_chat_completion(question, outcome):
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "you are a humble yet encouraging assistant, your tasks are to generate sarcastic motivational quote (word limit of 20 words) based on the outcome of the coin flip for the question the user gives with a creative flair. A tails indicates a yes to the user's question and heads is a no to the question."},
+            {"role": "system", "content": "you are a humble yet encouraging assistant, your tasks are to generate sarcastic motivational quote based on the outcome of the coin flip for the question the user gives with a creative flair. A tails indicates a yes to the user's question and heads is a no to the question."},
             {"role": "user", "content": user_message}
         ]
     )
