@@ -75,9 +75,9 @@ with tgb.Page() as home:
     with tgb.part(render="{transition1}"):
         # coin spinning
         with tgb.part(render="{is_heads}", class_name="center"):
-            tgb.image(content="../../assets/coinflip-heads.gif", label="Coin", id='mid', class_name="")
+            tgb.image(content="../../assets/coinflip-heads.gif", id='mid', class_name="")
         with tgb.part(render="{is_tails}", class_name="center"):
-            tgb.image(content="../../assets/coinflip-tails.gif", label="Coin", id='mid', class_name="")
+            tgb.image(content="../../assets/coinflip-tails.gif", id='mid', class_name="")
 
     with tgb.part(render="{transition2}"):
         # powered
@@ -86,9 +86,9 @@ with tgb.Page() as home:
 
         # coin
         with tgb.part(render="{is_heads}", class_name="center"):
-            tgb.image(content="../../assets/heads.png", label="Coin", class_name="")
+            tgb.image(content="../../assets/heads.png", class_name="")
         with tgb.part(render="{is_tails}", class_name="center"):
-            tgb.image(content="../../assets/tails.png", label="Coin", class_name="")
+            tgb.image(content="../../assets/tails.png", class_name="")
 
         # result
         tgb.text("The result is...")
