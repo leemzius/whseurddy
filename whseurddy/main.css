@@ -19,3 +19,8 @@ body {
     display: flex;
     border: 0;
 }
+
+.mid {
+    position: absolute;
+    top: 40vh;
+}

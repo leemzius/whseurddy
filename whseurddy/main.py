@@ -17,8 +17,7 @@ from pages import *
 
 pages = {
     "/": root_page,
-    "home": home,
-	"results": results
+    "home": home
 }
 
 stylekit = {

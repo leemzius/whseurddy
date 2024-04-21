@@ -19,19 +19,22 @@ Please refer to https://docs.taipy.io/en/latest/manuals/gui/pages for more detai
 from taipy.gui import Markdown
 import taipy.gui.builder as tgb
 import random
-from bkend.noracle import get_chat_completion 
+# from bkend.noracle import get_chat_completion 
 from bkend.flip import coin_flip
-
+import threading, time
 
 transition0 = True
 transition1 = False
 transition2 = False
+is_heads = False
+is_tails = False
+outcome = coin_flip()
 
 with tgb.Page() as home:
     with tgb.part(render="{transition0}"):
         # coin
         # src: https://dribbble.com/shots/1466662-Heads-tails
-        tgb.image(content="../../assets/coinflip.gif", label="Coin", on_action=(lambda x: x), class_name="m-auto")
+        tgb.image(content="../../assets/coinflip.gif", label="Coin")
 
         # page title
         tgb.text("Describe", mode="md")
@@ -41,25 +44,44 @@ with tgb.Page() as home:
         question = tgb.input("What decision are you making?")
 
         # descripion
-        tgb.text("HEADS is No.")
+        tgb.text("Heads is No.")
         tgb.text("Tails is Yes.")
 
         # button
         def on_press(state):
             state.transition0 = False
             state.transition1 = True
+            state.outcome = outcome
+            state.is_tails = outcome == 'Tails'     
+
+            if outcome == 'Heads':
+                state.is_heads = True
+                time.sleep(3.42 + 0.06)
+                state.transition1 = False
+                state.transition2 = True
+            else:
+                state.is_tails = True
+                time.sleep(4.35 + 0.06)
+                state.transition1 = False
+                state.transition2 = True
+
         tgb.button(label="Flip", on_action=on_press, class_name="")
 
     with tgb.part(render="{transition1}"):
         # coin spinning
-        tgb.image(content="url", label="Coin", on_action=(lambda x: x), class_name="")
+        with tgb.part(render="{is_heads}"):
+            tgb.image(content="../../assets/coinflip-heads.gif", label="Coin", id='#mid-1', class_name="")
+        with tgb.part(render="{is_tails}"):
+            tgb.image(content="../../assets/coinflip-tails.gif", label="Coin", id='#mid-2', class_name="")
 
     with tgb.part(render="{transition2}"):
         # coin
-        tgb.image(content="url", label="Coin", on_action=(lambda x: x), class_name="")
+        with tgb.part(render="{is_heads}"):
+            tgb.image(content="../../assets/heads.png", label="Coin", class_name="mid")
+        with tgb.part(render="{is_tails}"):
+            tgb.image(content="../../assets/tails.png", label="Coin", class_name="mid")
 
         # result
-        outcome = coin_flip()
-        quote = get_chat_completion(question, outcome)
+        # quote = get_chat_completion(question, outcome)
         tgb.text(f"The result is... {outcome}")
-        tgb.text(f"{quote}")
+        # tgb.text(f"{quote}")
