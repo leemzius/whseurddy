@@ -59,7 +59,7 @@ with tgb.Page() as home:
             state.transition1 = True
             state.outcome = outcome
             state.is_tails = outcome == 'Tails'     
-            state.quote = get_chat_completion(state.question)
+            state.quote = get_chat_completion(state.question, outcome)
 
             if outcome == 'Heads':
                 state.is_heads = True
