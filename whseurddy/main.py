@@ -14,12 +14,6 @@ from taipy.gui import Gui
 from taipy import Core
 from pages import *
 
-
-pages = {
-    "/": root_page,
-    "home": home
-}
-
 stylekit = {
     "color_background_light": "#38A296",
     "color_background_dark": "#38A296",
