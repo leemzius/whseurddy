@@ -28,6 +28,9 @@ transition1 = False
 transition2 = False
 is_heads = False
 is_tails = False
+question = ""
+quote = ""
+get_chat_completion = lambda x, y: x
 outcome = coin_flip()
 
 with tgb.Page() as home:
@@ -42,7 +45,7 @@ with tgb.Page() as home:
 
         # input box
         #save the user input
-        question = tgb.input("Tell me what you're indecisive about...", multiline=True, lines_shown=3, id="question")
+        tgb.input("{question}", multiline=True, lines_shown=3, id="question", hover_text="Placeholder")
 
         # descripion
         tgb.text("Heads is No.")
@@ -54,6 +57,7 @@ with tgb.Page() as home:
             state.transition1 = True
             state.outcome = outcome
             state.is_tails = outcome == 'Tails'     
+            state.quote = get_chat_completion(state.question, outcome)
 
             if outcome == 'Heads':
                 state.is_heads = True
@@ -85,4 +89,4 @@ with tgb.Page() as home:
         # result
         # quote = get_chat_completion(question, outcome)
         tgb.text(f"The result is... {outcome}")
-        # tgb.text(f"{quote}")
+        tgb.text("{quote}")
