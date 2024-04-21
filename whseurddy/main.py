@@ -41,5 +41,5 @@ if __name__ == "__main__":
     # Comment, remove or replace the previous lines with your own use case        #
     # #############################################################################
 
-    gui = Gui(pages=pages)
-    gui.run(title="Taipy Application", stylekit=stylekit, css_file='main.css')
+    gui = Gui(page=home)
+    gui.run(title="Noracle", stylekit=stylekit, css_file='main.css')

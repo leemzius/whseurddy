@@ -19,7 +19,7 @@ Please refer to https://docs.taipy.io/en/latest/manuals/gui/pages for more detai
 from taipy.gui import Markdown
 import taipy.gui.builder as tgb
 import random
-# from bkend.noracle import get_chat_completion 
+from bkend.noracle import get_chat_completion 
 from bkend.flip import coin_flip
 import threading, time
 
@@ -30,7 +30,7 @@ is_heads = False
 is_tails = False
 question = ""
 quote = ""
-get_chat_completion = lambda x, y: x
+# get_chat_completion = lambda x, y: x
 outcome = coin_flip()
 
 with tgb.Page() as home:
@@ -45,7 +45,7 @@ with tgb.Page() as home:
 
         # input box
         #save the user input
-        tgb.input("{question}", multiline=True, lines_shown=3, id="question", hover_text="Placeholder")
+        tgb.input("{question}", multiline=True, lines_shown=3, id="question")
 
         # descripion
         tgb.text("Heads is No.")
@@ -74,19 +74,26 @@ with tgb.Page() as home:
 
     with tgb.part(render="{transition1}"):
         # coin spinning
-        with tgb.part(render="{is_heads}"):
+        with tgb.part(render="{is_heads}", class_name="center"):
             tgb.image(content="../../assets/coinflip-heads.gif", label="Coin", id='mid', class_name="")
-        with tgb.part(render="{is_tails}"):
+        with tgb.part(render="{is_tails}", class_name="center"):
             tgb.image(content="../../assets/coinflip-tails.gif", label="Coin", id='mid', class_name="")
 
     with tgb.part(render="{transition2}"):
+        # powered
+        with tgb.part(class_name="center"):
+            tgb.text("Powered by Noracle", id="powered")
+
         # coin
-        with tgb.part(render="{is_heads}"):
+        with tgb.part(render="{is_heads}", class_name="center"):
             tgb.image(content="../../assets/heads.png", label="Coin", class_name="")
-        with tgb.part(render="{is_tails}"):
+        with tgb.part(render="{is_tails}", class_name="center"):
             tgb.image(content="../../assets/tails.png", label="Coin", class_name="")
 
         # result
-        # quote = get_chat_completion(question, outcome)
-        tgb.text(f"The result is... {outcome}")
-        tgb.text("{quote}")
+        tgb.text("The result is...")
+        if outcome == "Heads":
+            tgb.text(f"No", id="outcome")
+        else:
+            tgb.text(f"Yes", id="outcome")
+        tgb.text("{quote}", id="quote")
