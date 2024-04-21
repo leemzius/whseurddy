@@ -19,6 +19,9 @@ Please refer to https://docs.taipy.io/en/latest/manuals/gui/pages for more detai
 from taipy.gui import Markdown
 import taipy.gui.builder as tgb
 import random
+from bkend.noracle import get_chat_completion 
+from bkend.flip import coin_flip
+
 
 transition0 = True
 transition1 = False
@@ -34,10 +37,12 @@ with tgb.Page() as home:
         tgb.text("Describe", mode="md")
 
         # input box
-        tgb.input("What decision are you making?")
+        #save the user input
+        question = tgb.input("What decision are you making?")
 
         # descripion
-        tgb.text("HEADS is Yes\nTails is No")
+        tgb.text("HEADS is No.")
+        tgb.text("Tails is Yes.")
 
         # button
         def on_press(state):
@@ -54,8 +59,7 @@ with tgb.Page() as home:
         tgb.image(content="url", label="Coin", on_action=(lambda x: x), class_name="")
 
         # result
-        get_rand_result = lambda: 'Yes' if (random.randint(0, 1) == 1) else 0
-        tgb.text(f"The result is... {get_rand_result()}")
-
-        # quote
-        tgb.text("<Motivational quote")
+        outcome = coin_flip()
+        quote = get_chat_completion(question, outcome)
+        tgb.text(f"The result is... {outcome}")
+        tgb.text(f"{quote}")
