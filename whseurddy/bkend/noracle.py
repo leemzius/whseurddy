@@ -1,6 +1,7 @@
 from openai import OpenAI
 from dotenv import load_dotenv, find_dotenv
 import os
+from bkend.flip import coin_flip
 
 
 load_dotenv(find_dotenv())
@@ -8,6 +9,7 @@ api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=api_key)
 
 def get_chat_completion(question, outcome):
+    
     user_message = f"{question} The outcome of the coin flip is {outcome}."
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
